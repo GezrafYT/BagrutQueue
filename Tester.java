@@ -1,7 +1,7 @@
-
 import java.util.LinkedList;
 import java.util.Queue;
-public class Tester2 {
+
+public class Tester {
 
     public static int toNumber(Queue<Integer> q)
     {
@@ -50,13 +50,13 @@ public class Tester2 {
             }
             return identical;
         }
-        
+
         return false;
     }
 
     public static boolean isSimilar(Queue<Integer> q1, Queue<Integer> q2)
     {
-        boolean flag = true; 
+        boolean flag = true;
         if(!isIdentical(q1, q2))
         {
             for(int i = 0; i<q2.size(); i++)
@@ -71,5 +71,42 @@ public class Tester2 {
         }
 
         return true;
+    }
+
+    
+    public static Queue<Integer> frequencyQueue(Queue<Integer> q)
+    {
+        int count = 0;
+        int appear_count = 0;
+        int go = 1;
+        int x = 0;
+        Queue<Integer> temp = new LinkedList<>();
+        Queue<Integer> temp2 = new LinkedList<>();
+        temp = copyQueue(q);
+
+        while(!temp.isEmpty())
+        {
+            x = temp.remove();
+            count++;
+        }
+
+        for (int i = 0; i<count; i++) {
+            temp = copyQueue(q);
+            for (int i = 0; i<go; i++) x = temp.remove();
+            for (int j = 0; j < count; j++) {
+                if (temp.remove() == x) {
+                    appear_count++;
+                }
+            }
+            
+            temp2.add(x);
+            temp.add(appear_count);
+            go++;
+        }
+        
+        return temp2;
+        }
+
+
     }
 }
